@@ -10,7 +10,7 @@ f.close()
 
 now = datetime.now()
 current_time = now.strftime("%d/%m/%Y %H:%M:%S")
-print("Execution Time :", current_time)
+print("cross_ema_secure -> Execution Time :", current_time)
 
 strategy_name = "cross_ema_secure"
 ftx_auth_object = {
