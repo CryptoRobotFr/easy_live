@@ -4,7 +4,7 @@ import numpy as np
 import ta
 from datetime import datetime
 import json
-f = open('../secret.json',)
+f = open('./secret.json',)
 secret = json.load(f)
 f.close()
 
