@@ -33,7 +33,7 @@ timeframe = "1h"
 
 
 limit = 1000
-min_size = markets[pair_symbol]["limits"]["amount"]["min"]
+min_size = float(markets[pair_symbol]["info"]["minProvideSize"])
 
 df = pd.DataFrame(data=session.fetch_ohlcv(
     pair_symbol, timeframe, None, limit=limit))
