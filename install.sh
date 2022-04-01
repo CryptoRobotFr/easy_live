@@ -10,7 +10,7 @@ read subaccount_name
 sudo apt-get update
 sudo apt install pip -y
 sudo apt install jq -y
-pip install -r easy_live/requirements.txt -y
+pip install -r easy_live/requirements.txt
 
 secret_file=secret.json
 if test -f "$secret_file"; then
