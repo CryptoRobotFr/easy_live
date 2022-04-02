@@ -1,5 +1,9 @@
 echo Quelle stratégie voulez vous installer ?
 read strategy_name
+echo Quelle le symbol du premier asset a trader (pour BTC-USD il faut rentrer BTC ici) ?
+read symbol1
+echo Quelle le symbol du deuxieme asset a trader (pour BTC-USD il faut rentrer USD ici) ?
+read symbol2
 echo Entrez votre clé api publique
 read public_key
 echo Entrez votre clé api privée
@@ -27,7 +31,7 @@ else
 fi
 
 secret_content=`cat secret.json`
-$secret_content | jq '. + { "'"$strategy_name"'":{"public_key" : "'"$public_key"'","private_key" : "'"$private_key"'","subaccount_name" : "'"$subaccount_name"'"} }' secret.json > tmp.$$.json && mv tmp.$$.json secret.json
+$secret_content | jq '. + { "'"$strategy_name"'":{"public_key" : "'"$public_key"'","private_key" : "'"$private_key"'","subaccount_name" : "'"$subaccount_name"'","symbol1" : "'"$symbol1"'","symbol2" : "'"$symbol2"'"} }' secret.json > tmp.$$.json && mv tmp.$$.json secret.json
 
 croncmd="python3 easy_live/"$strategy_name".py > cronlog.log"
 cronjob="0 * * * * $croncmd"
