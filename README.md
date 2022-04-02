@@ -8,7 +8,7 @@ Une fois connecté à votre serveur il suffit de faire 2 commandes:
 
 > git clone https://github.com/CryptoRobotFr/easy_live.git
 
-> bash easy_live/install
+> bash easy_live/install.sh
 
 Ensuite il suffit de suivre les instructions en rentrant vos clé api FTX, le nom de votre sous compte, et enfin le nom de la stratégie souhaité parmis la liste ci dessous. Une fois que tout est fait si vous n'avez pas de message d'erreur c'est que tout est bon.
 
