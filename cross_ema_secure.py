@@ -43,10 +43,24 @@ df = df.set_index(df['timestamp'])
 df.index = pd.to_datetime(df.index, unit='ms')
 del df['timestamp']
 
+# Definitions des indiicateurs
 df['ema1'] = ta.trend.ema_indicator(close = df['close'], window = 25) # Moyenne exponentiel courte
 df['ema2'] = ta.trend.ema_indicator(close = df['close'], window = 45) # Moyenne exponentiel moyenne
 df['sma_long'] = ta.trend.sma_indicator(close = df['close'], window = 600) # Moyenne simple longue
 df['stoch_rsi'] = ta.momentum.stochrsi(close = df['close'], window = 14) # Stochastic RSI non moyenné (K=1 sur Trading View)
+
+def buy_condition(row, previous_row = None):
+    if row['ema1'] > row['ema2'] and row['stoch_rsi'] < 0.8 and row['close'] > row['sma_long']:
+        return True
+    else:
+        return False
+    
+def sell_condition(row, previous_row = None):
+    if row['ema2'] > row['ema1'] and row['stoch_rsi'] > 0.2:
+        return True
+    else:
+        return False
+
 
 def get_balance(symbol):
     balance = 0
@@ -60,7 +74,7 @@ balance_coin = get_balance(symbol_coin)
 balance_usd = get_balance(symbol_usd)
 row = df.iloc[-2]
 
-if row['ema1'] > row['ema2'] and row['stoch_rsi'] < 0.8 and row['close'] > row['sma_long'] and balance_usd > min_size*row["close"]:
+if buy_condition(row) and balance_usd > min_size*row["close"]:
     amount_to_buy = balance_usd / row["close"] 
     session.createOrder(
                 pair_symbol, 
@@ -70,7 +84,7 @@ if row['ema1'] > row['ema2'] and row['stoch_rsi'] < 0.8 and row['close'] > row['
                 None
             )
     print("Achat de " + str(session.amount_to_precision(pair_symbol, amount_to_buy)) + " " + symbol_coin + " au prix d'environ " +  str(row["close"]) + " $")
-elif row['ema2'] > row['ema1'] and row['stoch_rsi'] > 0.2 and  balance_coin > min_size:
+elif sell_condition(row) and  balance_coin > min_size:
     amount_to_sell = balance_coin
     session.createOrder(
                 pair_symbol, 
