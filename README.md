@@ -6,7 +6,7 @@ Pour faire nos échanges cryptos nous utiliserons FTX qui est une des plateforme
 
 Une fois connecté à votre serveur il suffit de faire 2 commandes:
 
-> git pull https://github.com/CryptoRobotFr/easy_live.git
+> git clone https://github.com/CryptoRobotFr/easy_live.git
 
 > bash easy_live/install
 
