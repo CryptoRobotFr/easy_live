@@ -26,9 +26,9 @@ markets = session.load_markets()
 
 
 # Vous pouvez changer la paire ou la timeframe ici
-pair_symbol = "BTC/USD"
-symbol_coin = "BTC"
-symbol_usd = "USD"
+pair_symbol = secret[strategy_name]["symbol1"]+"/"+secret[strategy_name]["symbol2"]
+symbol_coin = secret[strategy_name]["symbol1"]
+symbol_usd = secret[strategy_name]["symbol2"]
 timeframe = "1h"
 
 
