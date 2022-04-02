@@ -1,8 +1,8 @@
 echo Quelle stratégie voulez vous installer ?
 read strategy_name
-echo Quelle le symbol du premier asset a trader (pour BTC-USD il faut rentrer BTC ici) ?
+echo Quelle le symbol du premier asset a trader ex pour BTC-USD il faut rentrer BTC ici ?
 read symbol1
-echo Quelle le symbol du deuxieme asset a trader (pour BTC-USD il faut rentrer USD ici) ?
+echo Quelle le symbol du deuxieme asset a trader ex pour BTC-USD il faut rentrer USD ici ?
 read symbol2
 echo Entrez votre clé api publique
 read public_key
