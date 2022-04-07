@@ -1,3 +1,4 @@
+import sys 
 import ccxt
 import pandas as pd
 import numpy as np
@@ -12,7 +13,7 @@ now = datetime.now()
 current_time = now.strftime("%d/%m/%Y %H:%M:%S")
 print("cross_ema_secure -> Execution Time :", current_time)
 
-strategy_name = "cross_ema_secure"
+strategy_name = "cross_ema_secure"+"_"+sys.argv[1]+"_"+sys.argv[2]
 ftx_auth_object = {
     "apiKey": secret[strategy_name]["public_key"],
     "secret": secret[strategy_name]["private_key"],
@@ -26,9 +27,9 @@ markets = session.load_markets()
 
 
 # Vous pouvez changer la paire ou la timeframe ici
-pair_symbol = secret[strategy_name]["symbol1"]+"/"+secret[strategy_name]["symbol2"]
-symbol_coin = secret[strategy_name]["symbol1"]
-symbol_usd = secret[strategy_name]["symbol2"]
+pair_symbol = sys.argv[1]+"/"+sys.argv[2]
+symbol_coin = sys.argv[1]
+symbol_usd = sys.argv[2]
 timeframe = "1h"
 
 
