@@ -14,3 +14,4 @@ Ensuite il suffit de suivre les instructions en rentrant vos clé api FTX, le no
 
 ## Liste des stratégies disponible:
 - cross_ema_secure
+- alligator
