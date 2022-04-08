@@ -37,7 +37,7 @@ fi
 secret_content=`cat secret.json`
 $secret_content | jq '. + { "'"$strategy_name"'_'"$symbol1"'_'"$symbol2"'":{"public_key" : "'"$public_key"'","private_key" : "'"$private_key"'","subaccount_name" : "'"$subaccount_name"'","symbol1" : "'"$symbol1"'","symbol2" : "'"$symbol2"'"} }' secret.json > tmp.$$.json && mv tmp.$$.json secret.json
 
-croncmd=" cd "$folder_name";python3 "$strategy_name".py "$symbol1" "$symbol2" > cronlog.log"
+croncmd="cd "$folder_name";python3 "$strategy_name".py "$symbol1" "$symbol2" > cronlog.log"
 cronjob="0 * * * * $croncmd"
 ( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
 
