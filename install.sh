@@ -31,14 +31,14 @@ else
 fi
 
 secret_content=`cat secret.json`
-$secret_content | jq '. + { "'"$strategy_name"'":{"public_key" : "'"$public_key"'","private_key" : "'"$private_key"'","subaccount_name" : "'"$subaccount_name"'","symbol1" : "'"$symbol1"'","symbol2" : "'"$symbol2"'"} }' secret.json > tmp.$$.json && mv tmp.$$.json secret.json
+$secret_content | jq '. + { "'"$strategy_name"'_'"$symbol1"'_'"$symbol2"'":{"public_key" : "'"$public_key"'","private_key" : "'"$private_key"'","subaccount_name" : "'"$subaccount_name"'","symbol1" : "'"$symbol1"'","symbol2" : "'"$symbol2"'"} }' secret.json > tmp.$$.json && mv tmp.$$.json secret.json
 
-croncmd="python3 easy_live/"$strategy_name".py > cronlog.log"
+croncmd="python3 easy_live/"$strategy_name".py "$symbol1" "$symbol2" > cronlog.log"
 cronjob="0 * * * * $croncmd"
 ( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
 
 echo L erreur comand not found n est pas un probleme
 
-python3 easy_live/"$strategy_name".py
+python3 easy_live/"$strategy_name".py "$symbol1" "$symbol2"
 
 echo Si votre programme vous a afficher un message qui ne ressemble pas a une erreur c est que tout est bien installe vous pouvez maintenant quitter par exemple en faisant par exemple la comande close
