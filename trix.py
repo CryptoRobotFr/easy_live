@@ -11,9 +11,9 @@ f.close()
 
 now = datetime.now()
 current_time = now.strftime("%d/%m/%Y %H:%M:%S")
-print("cross_ema_secure -> Execution Time :", current_time)
+print("trix -> Execution Time :", current_time)
 
-strategy_name = "cross_ema_secure"+"_"+sys.argv[1]+"_"+sys.argv[2]
+strategy_name = "trix"+"_"+sys.argv[1]+"_"+sys.argv[2]
 ftx_auth_object = {
     "apiKey": secret[strategy_name]["public_key"],
     "secret": secret[strategy_name]["private_key"],
